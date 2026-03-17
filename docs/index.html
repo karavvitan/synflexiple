@@ -33,6 +33,151 @@
       position: absolute; left: 0; width: 100%; height: 100%;
       touch-action: none; z-index: 1;
     }
+
+    /* SETTINGS UI [ */
+    :root {
+      --color-base-300: oklch(20% 0 49.25);
+      --color-base-content: oklch(92% 0.003 48.717);
+      --color-primary: oklch(41% 0.14 257);
+      --color-secondary: oklch(34.5% 0.163 344.600);
+      --color-error: oklch(50% 0.213 27.518);
+    }
+
+    .settings {
+      display: flex;
+      flex-flow: column wrap;
+      gap: 0.75rem;
+      border: solid var(--color-base-300) 0.25rem;
+      border-radius: 0;
+      width: 100;
+      padding-bottom: 0.75rem;
+      color: var(--color-base-content);
+      background-color: var(--color-base-300);
+
+      * {
+        border-radius: 0.25rem;
+      }
+
+      input {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background-image: none;
+        background-color: transparent;
+        box-shadow: none;
+        font-family: inherit;
+        font-size: 100%;
+        font-weight: bold;
+        color: inherit;
+        width: 100;
+      }
+      input:focus {
+        outline: none;
+        color: var(--color-base-300);
+        background-color: var(--color-base-content);
+      }
+
+      label {
+        display: flex;
+        flex-flow: column wrap;
+      }
+
+      button {
+        color: var(--color-base-content);
+        background-color: var(--color-base-300);
+      }
+
+      .btn-close {
+        width: 2rem;
+        padding: 0.25rem;
+        position: absolute;
+        top: 0.25rem;
+        right: 0.25rem;
+        border: none;
+        border-radius: 0;
+      }
+    }
+
+    .settings-header {
+      display: flex;
+      flex-flow: column wrap;
+      background-color: var(--color-primary);
+      padding: 0.5rem;
+    }
+
+    .settings-heading {
+      margin: 0;
+      padding: 0.25rem;
+      text-align: center;
+    }
+
+    .settings-header-buttons {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-around;
+      button {
+        height: 1.25rem;
+      }
+    }
+
+    .a_setting {
+      background-color: var(--color-secondary);
+    }
+
+    .setting-header {
+      display: flex;
+      flex-flow: row wrap;
+      gap: 0.5rem;
+      align-items: center;
+      min-height: 2rem;
+
+      & > * {
+        margin: 0;
+      }
+
+      & > button {
+        height: 1.25rem;
+      }
+    }
+
+    .setting-name {
+      padding: 0.25rem;
+      align-self: flex-start;
+    }
+
+    .setting-contents {
+      display: flex;
+      flex-flow: column wrap;
+      padding: 0.5rem;
+      gap: 0.75rem;
+
+      & > button {
+        font-size: 1.25rem;
+      }
+    }
+
+    .setting-content {
+      display: flex;
+      flex-flow: column wrap;
+      gap: 0.25rem;
+      padding: 0.25rem;
+      background-color: var(--color-primary);
+    }
+
+    .setting-content-delete {
+      background-color: var(--color-error);
+      height: 2rem;
+    }
+
+    .settings-dialog {
+      margin: 0;
+      padding: 0;
+      border: none;
+      width: 100%;
+      position: fixed;
+      top: 0;
+    }
+    /* ] */
   </style>
 </head>
 <body>
