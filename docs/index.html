@@ -85,7 +85,7 @@
     }
 
     /* SETTINGS UI [ */
-    .settings {
+    #settings {
       display: flex;
       flex-flow: column wrap;
       gap: 1.25rem;
@@ -131,20 +131,20 @@
       }
     }
 
-    .settings-header {
+    #settings-header {
       display: flex;
       flex-flow: column wrap;
       background-color: var(--color-primary);
       padding: 0.5rem;
     }
 
-    .settings-heading {
+    #settings-heading {
       margin: 0;
       padding: 0.25rem;
       text-align: center;
     }
 
-    .settings-header-buttons {
+    #settings-header-buttons {
       display: flex;
       flex-flow: row wrap;
       justify-content: space-around;
@@ -193,7 +193,7 @@
       background-color: var(--color-error) !important;
     }
 
-    .settings-dialog {
+    #settings-dialog {
       z-index: 20;
       margin: 0;
       padding: 0;
@@ -222,12 +222,12 @@
     </select>
     <button onclick="settingsShow();">⚙️</button>
   </div>
-  <dialog class="settings-dialog" closedby="any">
+  <dialog id="settings-dialog" closedby="any">
     <button onclick="settingsDialog.close();" class="btn-close">❌</button>
-    <div class="settings">
-      <div class="settings-header">
-        <h2 class="settings-heading">Settings<hr></h2>
-        <div class="settings-header-buttons">
+    <div id="settings">
+      <div id="settings-header">
+        <h2 id="settings-heading">Settings<hr></h2>
+        <div id="settings-header-buttons">
           <button>Save all as JSON</button>
           <button>Load all from JSON</button>
         </div>
@@ -284,7 +284,7 @@
     const container = document.getElementById("padContainer");
     const scaleSelect = document.getElementById("scaleSelect");
     const scrollbarZone = document.getElementById("scrollbarZone");
-    const settingsDialog = document.querySelector(".settings-dialog");
+    const settingsDialog = document.getElementById("settings-dialog");
 
     function getFreqFromXY(x, y, width, height, ET, scale, minOct, maxOct) {
       const octaveHeight = height / (maxOct - minOct + 1);
