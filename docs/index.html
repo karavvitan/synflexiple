@@ -220,7 +220,7 @@
       <option value="Minor">Minor</option>
       <option value="Minor_Ratio">Minor Ratio</option>
     </select>
-    <button onclick="settingsDialog.showModal();">⚙️</button>
+    <button onclick="settingsShow();">⚙️</button>
   </div>
   <dialog class="settings-dialog" closedby="any">
     <button onclick="settingsDialog.close();" class="btn-close">❌</button>
@@ -238,20 +238,7 @@
           <button>Save as JSON</button>
           <button>Load from JSON</button>
         </div>
-        <div class="setting-contents">
-          <div class="setting-content">
-            <label class="scaleDisplayName">
-              Display Name of the scale:
-              <input type="text">
-            </label>
-            <label class="scaleId">
-              JavaScript identifier of the scale:
-              <input type="text">
-            </label>
-            <button class="setting-content-delete">Delete</button>
-          </div>
-          <button>➕</button>
-          <button>Reset</button>
+        <div class="setting-contents" id="scalePresetsInputs">
         </div>
       </div>
 
@@ -455,6 +442,35 @@
     });
 
     renderPad("Minor");
+
+    // SETTINGS [
+    const scalePresetsInputs = document.getElementById("scalePresetsInputs");
+
+    function settingsShow() {
+      settingsDialog.showModal();
+      scalePresetsInputs.innerHTML = "";
+
+      for (const option of scaleSelect.options) {
+        const settingContent = document.createElement("div");
+        settingContent.className = "setting-content";
+        const sDN = document.createElement("label");
+        sDNInput = document.createElement("input");
+        sDNInput.value = option.text;
+        sDN.append("Display Name of the Scale:", sDNInput);
+
+        const sID = document.createElement("label");
+        sIDInput = document.createElement("input");
+        sIDInput.value = option.value;
+        sID.append("JavaScript identifier for the scale:", sIDInput);
+
+        settingContent.append(sDN, sID);
+        settingContent.insertAdjacentHTML("beforeend", "<button class='setting-content-delete'>Delete</button>");
+        scalePresetsInputs.append(settingContent);
+      }
+
+      scalePresetsInputs.insertAdjacentHTML("beforeend", "<button>➕</button><button>Reset</button>");
+    }
+    // ]
   </script>
 </body>
 </html>
