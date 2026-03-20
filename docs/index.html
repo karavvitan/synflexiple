@@ -264,6 +264,8 @@
           <button>Load from JSON</button>
         </div>
         <div class="setting-contents" id="scalePresetsInputs">
+          <button id="scalePresetsReset">Reset</button>
+          <button id="scalePresetsAdd">➕</button>
         </div>
       </div>
     </div>
@@ -456,6 +458,8 @@
     const numOctavesInput = document.getElementById("numOctavesInput");
 
     const scalePresetsInputs = document.getElementById("scalePresetsInputs");
+    const scalePresetsReset = document.getElementById("scalePresetsReset");
+    const scalePresetsAdd = document.getElementById("scalePresetsAdd");
     // ]
 
     // Dialog show/close buttons [
@@ -470,11 +474,15 @@
 
     function settingsShow() {
       settingsDialog.showModal();
+
       baseFreqInput.value = baseFreq;
       baseOctaveInput.value = baseOctave;
       numOctavesInput.value = numOctaves;
 
-      scalePresetsInputs.innerHTML = "";
+      document.querySelectorAll("#scalePresetsInputs > .setting-content").forEach((elm) => {
+        elm.remove();
+      });
+
       for (let i = 0; i < scaleSelect.options.length; i++){
         const option = scaleSelect.options[i];
 
@@ -497,12 +505,10 @@
             Delete
           </button>
         `);
-        scalePresetsInputs.append(settingContent);
+        scalePresetsAdd.after(settingContent);
       }
 
       scalePresetsInputs.insertAdjacentHTML("beforeend", `
-        <button>➕</button>
-        <button>Reset</button>
       `);
     }
     /// ]
