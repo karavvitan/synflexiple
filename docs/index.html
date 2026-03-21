@@ -277,7 +277,8 @@
         tones: [0, 2, 3, 5, 7, 8, 10],
       },
       Minor_Ratio: {
-        tones: [1/1, 9/8, 6/5, 4/3, 3/2, 8/5, 9/5], notation: 0,
+        tones: [1/1, 9/8, 6/5, 4/3, 3/2, 8/5, 9/5],
+        notation: "ratio",
         displayName: "Minor Ratio",
       },
     };
@@ -300,7 +301,7 @@
 
       const index = Math.floor(x / width * scale.length);
       const safeIndex = Math.max(0, Math.min(index, scale.length - 1));
-      const ratio = (ET === 0 || ET === "r" || ET === "ratio") ? scale[safeIndex] : Math.pow(2, scale[safeIndex] / ET);
+      const ratio = (ET === "r" || ET === "ratio") ? scale[safeIndex] : Math.pow(2, scale[safeIndex] / ET);
       const freq = baseFreq * ratio * Math.pow(2, octaveIndex);
       return { freq: freq, volume: yVolume };
     }
@@ -335,7 +336,6 @@
     function renderPad(scaleName) {
       const ET = (scalePresets[scaleName].notation !== undefined) ? scalePresets[scaleName].notation : 12;
       const scale = scalePresets[scaleName].tones;
-      console.log(ET, scale);
       container.innerHTML = "";
 
       const pad = document.createElement("div");
@@ -351,7 +351,7 @@
           const note = document.createElement("div");
           note.className = "note-zone";
           const tone = scale[i];
-          const hue = (ET === 0 || ET === "r" || ET === "ratio") ? tone * 360 : (tone / ET) * 360;
+          const hue = (ET === "r" || ET === "ratio") ? tone * 360 : (tone / ET) * 360;
           note.style.backgroundColor = `hsl(${hue}, 70%, 55%)`;
           note.textContent = +tone.toFixed(3);
           octaveRow.appendChild(note);
@@ -452,6 +452,7 @@
       for (const [key, value] of Object.entries(scalePresets)) {
         const option = document.createElement("option");
         option.value = key;
+        option.id = `scaleOption_${key}`;
         option.textContent = value.displayName || key;
         scaleSelect.append(option);
       }
@@ -520,9 +521,31 @@
       scalePresetsInputs.append(sDN, sID, tones, notation, deleteBtn);
       scalePresetsAdd.after(scalePresetsInputs);
 
+      let sPKey = sIDValue;
       scalePresetsInputs.addEventListener("change", (e) => {
         const inp = e.target;
-        console.log(inp === notationInput);
+        switch (inp) {
+          case sDNInput:
+            scalePresets[sPKey].displayName = inp.value;
+            document.getElementById(`scaleOption_${sPKey}`).textContent = inp.value;
+            break;
+          case sIDInput:
+            scalePresets[inp.value] = scalePresets[sPKey];
+            delete scalePresets[sPKey];
+            document.getElementById(`scaleOption_${sPKey}`).value = inp.value;
+            sPKey = inp.value;
+            break;
+          case tonesInput:
+            scalePresets[sPKey].tones = inp.value
+              .split(",")
+              .map((e) => parseFloat(e.trim()))
+              .filter((e) => !isNaN(e))
+            ;
+            break;
+          case notationInput:
+            scalePresets[sPKey].notation = inp.value;
+            break;
+        }
       });
     }
 
@@ -535,6 +558,10 @@
       );
     }
     /// ]
+
+    settingsDialog.addEventListener("close", () => {
+      renderPad(scaleSelect.value);
+    });
   </script>
 </body>
 </html>
