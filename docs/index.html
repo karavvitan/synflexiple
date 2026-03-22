@@ -452,7 +452,6 @@
       for (const [key, value] of Object.entries(scalePresets)) {
         const option = document.createElement("option");
         option.value = key;
-        option.id = `scaleOption_${key}`;
         option.textContent = value.displayName || key;
         scaleSelect.append(option);
       }
@@ -523,17 +522,18 @@
       scalePresetsAdd.after(scalePresetsInputs);
 
       let sPKey = sIDValue;
+      const scaleOption = document.querySelector(`#scaleSelect > option[value=${sPKey}]`);
       scalePresetsInputs.addEventListener("change", (e) => {
         const inp = e.target;
         switch (inp) {
           case sDNInput:
             scalePresets[sPKey].displayName = inp.value;
-            document.getElementById(`scaleOption_${sPKey}`).textContent = inp.value;
+            scaleOption.textContent = inp.value;
             break;
           case sIDInput:
             scalePresets[inp.value] = scalePresets[sPKey];
             delete scalePresets[sPKey];
-            document.getElementById(`scaleOption_${sPKey}`).value = inp.value;
+            scaleOption.value = inp.value;
             sPKey = inp.value;
             break;
           case tonesInput:
