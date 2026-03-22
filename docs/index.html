@@ -272,7 +272,7 @@
   <div id="padContainer"></div>
 
   <script>
-    const scalePresets = {
+    const scalePresets = JSON.parse(localStorage.getItem("scalePresets")) || {
       Minor: {
         tones: [0, 2, 3, 5, 7, 8, 10],
       },
@@ -602,6 +602,7 @@
 
     settingsDialog.addEventListener("close", () => {
       renderPad(scaleSelect.value);
+      localStorage.setItem("scalePresets", JSON.stringify(scalePresets));
     });
 
     /// ]
