@@ -280,8 +280,10 @@
       return true;
     }
 
+    /// CONFIGS DEFAULTS [
     const cfg = {}; // cfg stands for "configs"
 
+    // scalePresets
     cfg.scalePresets = JSON.parse(localStorage.getItem("cfg.scalePresets")) || {
       Minor: {
         tones: [0, 2, 3, 5, 7, 8, 10],
@@ -293,12 +295,15 @@
       },
     };
 
-    cfg.baseFreq = parseFloat(localStorage.getItem("cfg.baseFreq")) || 261.63;
+    // Basics
+cfg.baseFreq = parseFloat(localStorage.getItem("cfg.baseFreq")) || 261.63;
     let baseOctave = (!isNaN(parseInt(localStorage.getItem("baseOctave")))) ? parseInt(localStorage.getItem("baseOctave")) : -1;
     let numOctaves = parseInt(localStorage.getItem("numOctaves")) || 4;
 
+    // UI
     let rowHeight = 120;
     document.documentElement.style.setProperty("--rowHeight", rowHeight + "px");
+    /// ]
 
     const container = document.getElementById("padContainer");
     const scaleSelect = document.getElementById("scaleSelect");
@@ -594,7 +599,7 @@
     });
     // ]
 
-    // STATIC INPUTS [
+    // Static Inputs
     basicSettingsInputs.addEventListener("change", (e) => {
       const inp = e.target;
       switch (inp) {
@@ -612,7 +617,6 @@
           break;
       }
     });
-    // ]
 
     settingsDialog.addEventListener("close", () => {
       renderPad(scaleSelect.value);
