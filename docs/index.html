@@ -293,7 +293,7 @@
       },
     };
 
-    let baseFreq = parseFloat(localStorage.getItem("baseFreq")) || 261.63;
+    cfg.baseFreq = parseFloat(localStorage.getItem("cfg.baseFreq")) || 261.63;
     let baseOctave = (!isNaN(parseInt(localStorage.getItem("baseOctave")))) ? parseInt(localStorage.getItem("baseOctave")) : -1;
     let numOctaves = parseInt(localStorage.getItem("numOctaves")) || 4;
 
@@ -313,7 +313,7 @@
       const index = Math.floor(x / width * scale.length);
       const safeIndex = Math.max(0, Math.min(index, scale.length - 1));
       const ratio = (ET === "r" || ET === "ratio") ? scale[safeIndex] : Math.pow(2, scale[safeIndex] / ET);
-      const freq = baseFreq * ratio * Math.pow(2, octaveIndex);
+      const freq = cfg.baseFreq * ratio * Math.pow(2, octaveIndex);
       return { freq: freq, volume: yVolume };
     }
 
@@ -497,7 +497,7 @@
     });
     // ]
 
-    baseFreqInput.value = baseFreq;
+    baseFreqInput.value = cfg.baseFreq;
     baseOctaveInput.value = baseOctave;
     numOctavesInput.value = numOctaves;
 
@@ -599,8 +599,8 @@
       const inp = e.target;
       switch (inp) {
         case baseFreqInput:
-          baseFreq = parseFloat(inp.value);
-          localStorage.setItem("baseFreq", baseFreq);
+          cfg.baseFreq = parseFloat(inp.value);
+          localStorage.setItem("cfg.baseFreq", cfg.baseFreq);
           break;
         case baseOctaveInput:
           baseOctave = parseInt(inp.value);
