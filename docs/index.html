@@ -490,13 +490,13 @@
     baseOctaveInput.value = baseOctave;
     numOctavesInput.value = numOctaves;
 
-    // scalePresetsInputs [
-    function scalePresetsInputsGenerate(sDNValue = "New Scale", sIDValue = "New_Scale", tonesValue = "", notationValue = 12) {
+    // scalePresetInputs [
+    function scalePresetInputsGenerate(sDNValue = "New Scale", sIDValue = "New_Scale", tonesValue = "", notationValue = 12) {
       let sPKey = sIDValue;
       const scaleOption = document.querySelector(`#scaleSelect > option[value=${sPKey}]`);
 
-      const scalePresetsInputs = document.createElement("div");
-      scalePresetsInputs.className = "setting-content";
+      const scalePresetInputs = document.createElement("div");
+      scalePresetInputs.className = "setting-content";
 
       const sDN = document.createElement("label");
       const sDNInput = document.createElement("input");
@@ -522,15 +522,15 @@
       deleteBtn.className = "setting-content-delete";
       deleteBtn.textContent = "Delete";
       deleteBtn.addEventListener("click", () => {
-        scalePresetsInputs.remove();
+        scalePresetInputs.remove();
         delete scalePresets[sPKey];
         scaleOption.remove();
       });
 
-      scalePresetsInputs.append(sDN, sID, tones, notation, deleteBtn);
-      scalePresetsAdd.after(scalePresetsInputs);
+      scalePresetInputs.append(sDN, sID, tones, notation, deleteBtn);
+      scalePresetsAdd.after(scalePresetInputs);
 
-      scalePresetsInputs.addEventListener("change", (e) => {
+      scalePresetInputs.addEventListener("change", (e) => {
         const inp = e.target;
         switch (inp) {
           case sDNInput:
@@ -558,7 +558,7 @@
     }
 
     for (const [key, value] of Object.entries(scalePresets)) {
-      scalePresetsInputsGenerate(
+      scalePresetInputsGenerate(
         sDNValue = value.displayName || key,
         sIDValue = key,
         tonesValue = value.tones,
@@ -572,7 +572,7 @@
       option.value = "New_Scale";
       option.textContent = "New Scale";
       scaleSelect.append(option);
-      scalePresetsInputsGenerate();
+      scalePresetInputsGenerate();
     });
 
     scalePresetsReset.addEventListener("click", () => {
