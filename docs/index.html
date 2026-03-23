@@ -589,6 +589,9 @@
       range.setStartAfter(scalePresetsAdd);
       range.setEndAfter(scalePresetsAdd.parentNode.lastChild);
       range.deleteContents();
+      cfg.scalePresets = {};
+      scaleSelect.replaceChildren();
+      localStorage.removeItem("cfg.scalePresets");
     });
     // ]
 
