@@ -500,7 +500,12 @@
     numOctavesInput.value = cfg.numOctaves;
 
     // scalePresetInputs [
-    function scalePresetInputsGenerate(sDNValue = "New Scale", sIDValue = "New_Scale", tonesValue = "", notationValue = 12) {
+    function scalePresetInputsGenerate({
+      sDNValue = "",
+      sIDValue = "",
+      tonesValue = "",
+      notationValue = "",
+    }) {
       let sPKey = sIDValue;
       const scaleOption = document.querySelector(`#scaleSelect > option[value=${sPKey}]`);
 
@@ -567,12 +572,12 @@
     }
 
     for (const [key, value] of Object.entries(cfg.scalePresets)) {
-      scalePresetInputsGenerate(
-        sDNValue = value.displayName || key,
-        sIDValue = key,
-        tonesValue = value.tones,
-        notationValue = (value.notation !== undefined) ? value.notation : 12,
-      );
+      scalePresetInputsGenerate({
+        sDNValue: value.displayName || key,
+        sIDValue: key,
+        tonesValue: value.tones,
+        notationValue: (value.notation !== undefined) ? value.notation : 12,
+      });
     }
 
     scalePresetsAdd.addEventListener("click", () => {
