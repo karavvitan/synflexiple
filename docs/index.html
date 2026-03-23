@@ -520,7 +520,7 @@
       const sID = document.createElement("label");
       const sIDInput = document.createElement("input");
       sIDInput.value = sIDValue;
-      sID.append("JavaScript identifier for the scale:", sIDInput);
+      sID.append("Object key for the scale (must be unique):", sIDInput);
 
       const tones = document.createElement("label");
       const tonesInput = document.createElement("input");
@@ -530,7 +530,7 @@
       const notation = document.createElement("label");
       const notationInput = document.createElement("input");
       notationInput.value = notationValue;
-      notation.append("The notation basis:", notationInput);
+      notation.append("Notation basis:", notationInput);
 
       const deleteBtn = document.createElement("button");
       deleteBtn.className = "setting-content-delete";
