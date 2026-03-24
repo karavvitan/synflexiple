@@ -653,11 +653,14 @@
       });
     });
 
+    HTMLElement.prototype.removeNext = function() {
+      while (this.nextSibling) {
+        this.nextSibling.remove();
+      }
+    }
+
     scalePresetsReset.addEventListener("click", () => {
-      const range = document.createRange();
-      range.setStartAfter(scalePresetsAdd);
-      range.setEndAfter(scalePresetsAdd.parentNode.lastChild);
-      range.deleteContents();
+      scalePresetsAdd.removeNext();
       cfg.scalePresets = {};
       scaleSelect.replaceChildren();
       localStorage.removeItem("cfg.scalePresets");
