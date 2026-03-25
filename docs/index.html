@@ -263,11 +263,11 @@
 
       <div class="a_setting">
         <div class="setting-header">
-          <h4 class="setting-name">Basic Settings</h4>
-          <a>Export</a>
+          <h4 class="setting-name">Basic Configs</h4>
+          <button id="exportCfgBasics">Export</button>
           <div>
-            <label for="">Import</label>
-            <input type="file" id="">
+            <label for="importCfgBasics">Import</label>
+            <input type="file" id="importCfgBasics">
           </div>
         </div>
         <div class="setting-contents">
@@ -290,10 +290,10 @@
       <div class="a_setting">
         <div class="setting-header">
           <h4 class="setting-name">Scales Presets</h4>
-          <a>Export</a>
+          <button id="exportScalePresets">Export</button>
           <div>
-            <label for="">Import</label>
-            <input type="file" id="">
+            <label for="importScalePresets">Import</label>
+            <input type="file" id="importScalePresets">
           </div>
         </div>
         <div class="setting-contents">
@@ -523,6 +523,10 @@
 
     const exportAll = document.getElementById("exportAll");
     const importAll = document.getElementById("importAll");
+    const exportCfgBasics = document.getElementById("exportCfgBasics");
+    const importCfgBasics = document.getElementById("importCfgBasics");
+    const exportScalePresets = document.getElementById("exportScalePresets");
+    const importScalePresets = document.getElementById("importScalePresets");
     // ]
 
     // Dialog show/close buttons [
