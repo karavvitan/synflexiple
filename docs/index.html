@@ -253,7 +253,7 @@
       <div id="settingsHeader">
         <h2 id="settingsHeading">Settings<hr></h2>
         <div id="settingsHeaderButtons">
-          <a id="exportAll">Export all</a>
+          <button id="exportAll">Export all</button>
           <div>
             <label for="importAll">Import all</label>
             <input type="file" id="importAll">
@@ -687,20 +687,22 @@
     });
     // ]
 
-    function exportJSON(btn, obj, filename) {
+    function exportJSON(obj, filename) {
       const file = new Blob([JSON.stringify(obj, null, 2)], {
         type: "application/json",
       });
       const url = URL.createObjectURL(file);
+      const btn = document.createElement("a");
       btn.href = url;
       btn.download = filename || "export.json";
       btn.click();
       URL.revokeObjectURL(url);
+      btn.remove();
     }
 
     // Ex/import configs [
     exportAll.addEventListener("click", function() {
-      exportJSON(this, cfg, "all_configs.json");
+      exportJSON(cfg, "all_configs.json");
     });
 
     importAll.addEventListener("change", function() {
