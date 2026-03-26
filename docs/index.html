@@ -245,7 +245,7 @@
       ⚙️
     </button>
   </div>
-  <dialog id="settingsDialog">
+  <dialog id="settingsDialog" closedby="any">
     <button id="settingsDialogClose">
       💾
     </button>
@@ -311,7 +311,16 @@
   <div id="padContainer"></div>
 
   <script>
-    let dialogDebug = false;
+    let dbug = false;
+    function dbt(b) {
+      if (!b) {
+        dbug = true;
+        settingsDialog.setAttribute("closedby", "closerequest");
+      } else {
+        dbug = false;
+        settingsDialog.setAttribute("closedby", "any");
+      }
+    }
 
     /// CONFIGS DEFAULTS [
 
@@ -557,7 +566,7 @@
 
     // Dialog show/close buttons [
     settingsDialogShow.addEventListener("click", () => {
-      if (!dialogDebug) {
+      if (!dbug) {
         settingsDialog.showModal();
       } else {
         settingsDialog.show();
@@ -568,11 +577,6 @@
       settingsDialog.close();
     });
     // ]
-    if (dialogDebug) {
-      settingsDialog.setAttribute("closedby", "closerequest");
-    } else {
-      settingsDialog.setAttribute("closedby", "any");
-    }
 
     baseFreqInput.value = cfg.basics.baseFreq;
     baseOctaveInput.value = cfg.basics.baseOctave;
