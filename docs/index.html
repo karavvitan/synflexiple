@@ -345,6 +345,16 @@
       ui: {
         rowHeight: 120,
       },
+
+      synth: {
+        attack: 0.05,
+        decay: 0.1,
+        sustain: 0.7,
+        release: 0.9,
+
+        oscType: "sine",
+        filType: "allpass",
+      },
     };
 
     document.documentElement.style.setProperty("--rowHeight", cfg.ui.rowHeight + "px");
@@ -460,10 +470,10 @@
         const gain = audioCtx.createGain();
         const filter = audioCtx.createBiquadFilter();
 
-        osc.type = "sawtooth";
+        osc.type = cfg.synth.oscType || "sawtooth";
         osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
 
-        filter.type = "lowpass";
+        filter.type = cfg.synth.filType || "lowpass";
         filter.frequency.setValueAtTime(500 + y * 4, audioCtx.currentTime);
 
         const lfo = audioCtx.createOscillator();
@@ -480,7 +490,7 @@
         osc.start();
         lfo.start();
 
-        const release = applyEnvelope(gain, audioCtx, volume);
+        const release = applyEnvelope(gain, audioCtx, volume, cfg.synth.attack, cfg.synth.decay, cfg.synth.sustain, cfg.synth.release);
         activeVoices.set(id, { osc, gain, lfo, release });
       });
 
