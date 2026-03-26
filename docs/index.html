@@ -773,6 +773,30 @@
           break;
       }
     });
+
+    synthInputs.addEventListener("change", (e) => {
+      const inp = e.target;
+      switch (inp) {
+        case attackInput:
+          cfg.synth.attack = parseFloat(inp.value);
+          break;
+        case decayInput:
+          cfg.synth.decay = parseFloat(inp.value);
+          break;
+        case sustainInput:
+          cfg.synth.sustain = parseFloat(inp.value);
+          break;
+        case releaseInput:
+          cfg.synth.release = parseFloat(inp.value);
+          break;
+        case oscTypeInput:
+          cfg.synth.oscType = inp.value;
+          break;
+        case filTypeInput:
+          cfg.synth.filType = inp.value;
+          break;
+      }
+    });
     // ]
 
     function exportJSON(obj, filename) {
