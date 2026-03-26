@@ -642,7 +642,17 @@
       numOctavesInput.value = cfg.basics.numOctaves;
     }
 
+    function synthInputsUpdate() {
+      attackInput.value = cfg.synth.attack;
+      decayInput.value = cfg.synth.decay;
+      sustainInput.value = cfg.synth.sustain;
+      releaseInput.value = cfg.synth.release;
+      oscTypeInput.value = cfg.synth.oscType;
+      filTypeInput.value = cfg.synth.filType;
+    }
+
     basicConfigsInputsUpdate();
+    synthInputsUpdate();
     //]
 
     // scalePresetInputs [
