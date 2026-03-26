@@ -258,6 +258,7 @@
             <label for="importAll">Import all</label>
             <input type="file" id="importAll">
           </div>
+          <button id="clearCacheBtn">Clear cache</button>
         </div>
       </div>
 
@@ -547,6 +548,8 @@
     const importCfgBasics = document.getElementById("importCfgBasics");
     const exportScalePresets = document.getElementById("exportScalePresets");
     const importScalePresets = document.getElementById("importScalePresets");
+
+    const clearCacheBtn = document.getElementById("clearCacheBtn");
     // ]
 
     // Dialog show/close buttons [
@@ -775,10 +778,17 @@
     });
     // ]
 
+    let clearCache = false;
+    clearCacheBtn.addEventListener("click", () => {
+      clearCache = true;
+      localStorage.removeItem("cfg");
+    });
+
     settingsDialog.addEventListener("close", () => {
       renderPad(scaleSelect.value);
       document.documentElement.style.setProperty("--rowHeight", cfg.ui.rowHeight + "px");
-      localStorage.setItem("cfg", JSON.stringify(cfg));
+      if (!clearCache) localStorage.setItem("cfg", JSON.stringify(cfg));
+      clearCache = false;
     });
 
     /// ]
