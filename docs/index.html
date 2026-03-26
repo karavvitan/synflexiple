@@ -258,7 +258,10 @@
             <label for="importAll">Import all</label>
             <input type="file" id="importAll">
           </div>
-          <button id="clearCacheBtn">Clear cache</button>
+          <label style="display: inline;">
+            Cache configs?
+            <input type="checkbox" checked id="cacheConfigs">
+          </label>
         </div>
       </div>
 
@@ -549,7 +552,7 @@
     const exportScalePresets = document.getElementById("exportScalePresets");
     const importScalePresets = document.getElementById("importScalePresets");
 
-    const clearCacheBtn = document.getElementById("clearCacheBtn");
+    const cacheConfigs = document.getElementById("cacheConfigs");
     // ]
 
     // Dialog show/close buttons [
@@ -781,17 +784,14 @@
     });
     // ]
 
-    let clearCache = false;
-    clearCacheBtn.addEventListener("click", () => {
-      clearCache = true;
-      localStorage.removeItem("cfg");
-    });
-
     settingsDialog.addEventListener("close", () => {
       renderPad(scaleSelect.value);
       document.documentElement.style.setProperty("--rowHeight", cfg.ui.rowHeight + "px");
-      if (!clearCache) localStorage.setItem("cfg", JSON.stringify(cfg));
-      clearCache = false;
+      if (cacheConfigs.checked) {
+        localStorage.setItem("cfg", JSON.stringify(cfg));
+      } else {
+        localStorage.removeItem("cfg");
+      }
     });
 
     /// ]
