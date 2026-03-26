@@ -738,6 +738,7 @@
 
     settingsDialog.addEventListener("close", () => {
       renderPad(scaleSelect.value);
+      document.documentElement.style.setProperty("--rowHeight", cfg.ui.rowHeight + "px");
       localStorage.setItem("cfg", JSON.stringify(cfg));
     });
 
