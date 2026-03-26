@@ -730,7 +730,26 @@
         scaleOptionsGenerate();
         scalePresetsAdd.removeNext();
         scalePresetsInputsUpdate();
-      }
+      };
+
+      reader.readAsText(file);
+    });
+
+    exportCfgBasics.addEventListener("click", () => {
+      exportJSON(cfg.basics, "basic_configs.json");
+    });
+
+    importCfgBasics.addEventListener("change", function() {
+      const file = this.files[0];
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        Object.assign(cfg.basics, JSON.parse(reader.result));
+
+        baseFreqInput.value = cfg.basics.baseFreq;
+        baseOctaveInput.value = cfg.basics.baseOctave;
+        numOctavesInput.value = cfg.basics.numOctaves;
+      };
 
       reader.readAsText(file);
     });
