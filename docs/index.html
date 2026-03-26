@@ -101,7 +101,7 @@
         border-radius: 0.25rem;
       }
 
-      input {
+      .reset-input {
         -webkit-appearance: none;
         -moz-appearance: none;
         appearance: none;
@@ -114,7 +114,7 @@
         color: inherit;
         width: 100;
       }
-      input:focus {
+      .reset-input:focus {
         outline: none;
         color: var(--color-base-300);
         background-color: var(--color-base-content);
@@ -275,14 +275,14 @@
           <div class="setting-content" id="basicSettingsInputs">
             <label>
               Base frequency:
-              <input type="number" id="baseFreqInput">
+              <input type="number" class="reset-input" id="baseFreqInput">
             </label>
             <label>
               Base octave:
-              <input type="number" id="baseOctaveInput">
+              <input type="number" class="reset-input" id="baseOctaveInput">
             <label>
               Number of octaves:
-              <input type="number" id="numOctavesInput">
+              <input type="number" class="reset-input" id="numOctavesInput">
             </label>
           </div>
         </div>
@@ -590,16 +590,19 @@
       const sID = document.createElement("label");
       const sIDInput = document.createElement("input");
       sIDInput.value = sIDValue;
+      sIDInput.className = "reset-input";
       sID.append("Scale name (must be unique):", sIDInput);
 
       const tones = document.createElement("label");
       const tonesInput = document.createElement("input");
       tonesInput.value = tonesValue;
+      tonesInput.className = "reset-input";
       tones.append("The tones list:", tonesInput);
 
       const notation = document.createElement("label");
       const notationInput = document.createElement("input");
       notationInput.value = notationValue;
+      notationInput.className = "reset-input";
       notation.append("Notation basis:", notationInput);
 
       const deleteBtn = document.createElement("button");
