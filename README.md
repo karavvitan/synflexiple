@@ -4,7 +4,7 @@ This is very good for education, casual playing, and for beginners.
 This is a more developed fork of `simflex` variant of my `Sincrediple`.
 Look at [Sincrediple](https://github.com/karavvitan/Sincrediple) repository for context.
 
-[Try it!](https://karavvitan.github.io/synflexiple/index.html)
+[Try it!](https://karavvitan.github.io/synflexiple-lite/index.html)
 
 > - [What Is It?](#what-is-it)
 > - [Features](#features)
