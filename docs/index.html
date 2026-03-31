@@ -587,6 +587,7 @@
 
     scaleOptionsGenerate();
     renderPad(scaleSelect.options[0].value);
+    if (scaleSelect.value) renderPad(scaleSelect.value || scaleSelect.options[0].value);
 
     /// SETTINGS [
 
@@ -896,7 +897,7 @@
     // ]
 
     settingsDialog.addEventListener("close", () => {
-      renderPad(scaleSelect.value);
+      if (scaleSelect.value) renderPad(scaleSelect.value);
       document.documentElement.style.setProperty("--rowHeight", cfg.ui.rowHeight + "px");
       if (cacheConfigs.checked) {
         localStorage.setItem("cfg", JSON.stringify(cfg));
